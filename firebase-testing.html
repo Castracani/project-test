@@ -9,9 +9,14 @@
        * Firebase Console > Overview > Add Firebase to your web app. *
        ***************************************************************************************** -->
   <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase-database.js"></script>
+  <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
   <script>
     // Initialize Firebase
     // TODO: Replace with your project's customized code snippet
+  
     var config = {
       apiKey: "AIzaSyBZvq3N02QOEG6fa-6qiDLwOHoSeIBza0Q",
       authDomain: "game-website-9813e.firebaseapp.com",
@@ -22,13 +27,11 @@
     };
     firebase.initializeApp(config);
   </script>
-  <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase-database.js"></script>
-  <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
-  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
-   <script type="text/javascript">
 
-   var database = firebase.database()
+   <script type="text/javascript">
+    var database = firebase.database();
+    var auth = firebase.auth();
+
       // FirebaseUI config.
       var uiConfig = {
         callbacks: {
