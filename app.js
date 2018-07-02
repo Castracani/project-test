@@ -6,7 +6,7 @@ window.addEventListener('load', function() {
     responseType: 'token id_token',
     audience: 'https://castra.auth0.com/userinfo',
     scope: 'openid',
-    redirectUri: window.location.href
+    redirectUri: 'https://castracani.github.io/project-test/profile.html'
   });
 
   var loginBtn = document.getElementById('btn-login');
