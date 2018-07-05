@@ -1,28 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Login Page</title>
   <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyBZvq3N02QOEG6fa-6qiDLwOHoSeIBza0Q",
-    authDomain: "game-website-9813e.firebaseapp.com",
-    databaseURL: "https://game-website-9813e.firebaseio.com",
-    projectId: "game-website-9813e",
-    storageBucket: "game-website-9813e.appspot.com",
-    messagingSenderId: "70919236665"
-  };
-  firebase.initializeApp(config);
-</script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyBZvq3N02QOEG6fa-6qiDLwOHoSeIBza0Q",
+      authDomain: "game-website-9813e.firebaseapp.com",
+      databaseURL: "https://game-website-9813e.firebaseio.com",
+      projectId: "game-website-9813e",
+      storageBucket: "game-website-9813e.appspot.com",
+      messagingSenderId: "70919236665"
+    };
+    firebase.initializeApp(config);
+  </script>
   <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
-<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
-<script type="text/javascript" src="auth.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
+  <script type="text/javascript" src="auth.js"></script>
 </head>
+
 <body>
   <div id="firebaseui-auth-container"></div>
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <div id="sign-in-status"></div>
+    <div id="sign-in"></div>
+    <div id="account-details"></div>
 </body>
+
 </html>
