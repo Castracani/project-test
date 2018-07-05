@@ -8,7 +8,6 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- Firebase script -->
   <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
-  <link href="favicon.ico" type="image/x-icon" rel="shortcut icon" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
   <link rel="stylesheet" href="assets/css/style.css">
   <title>Gamer Tagged</title>
@@ -19,7 +18,7 @@
     <!-- Header -->
 
     <nav>
-      <div class="col s12 nav-wrapper hf-color">
+      <div class="nav-wrapper hf-color">
         <a href="#!" class="brand-logo">
           <i class="material-icons icon">videogame_asset</i>Gamer Tagged</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger">
@@ -47,73 +46,76 @@
       </div>
     </form>
 
+
+
     <div class="container">
       <div class="row main-content" style="margin-top: 38px">
-        <div class="col s12 m12 l6">
-          <div class="card card-color z-depth-5">
-            <!-- add card header -->
+        <div class="col s12 m12 l8 offset-l2">
+          <div class="card card-color z-depth-5" style="border-radius: 4px">
+
             <div class="card-content">
               <div class="row ">
+
                 <form class="col s12">
                   <span class="card-title">Create User Profile</span>
-                  <div class="row">
-                    <div class="input-field col s12">
-                      <input id="first_name" type="text" class="validate">
-                      <label for="first_name">First Name</label>
-                    </div>
+
+                  <div class="input-field col s6">
+                    <input id="first_name" type="text" class="validate" required>
+                    <label for="first_name">First Name</label>
                   </div>
-                  <div class="row">
-                    <div class="input-field col s12">
-                      <input id="last_name" type="text" class="validate">
-                      <label for="last_name">Last Name</label>
-                    </div>
+                  <div class="input-field col s6">
+                    <input id="last_name" type="text" class="validate" required>
+                    <label for="last_name">Last Name</label>
                   </div>
+
                   <div class="row">
-                    <div class="input-field col s12">
-                      <input id="username" type="text" class="validate">
+                    <div class="input-field col s6">
+                      <input id="username" type="text" class="validate" required>
                       <label for="username">Username</label>
                     </div>
+                    <div class="input-field col s6">
+                      <input id="email" type="email" class="validate">
+                      <label for="email">Email</label>
+                    </div>
                   </div>
+
+                  <div class="input-field col s12">
+                    <input id="psn-name" type="text" class="validate">
+                    <label for="psn-name">PSN Name</label>
+                  </div>
+
+                  <div class="input-field col s12">
+                    <input id="gamer-tag" type="text" class="validate">
+                    <label for="gamer-tag">Xbox Gamer Tag</label>
+                  </div>
+
+                  <div class="input-field col s12">
+                    <input placeholder="Enter Vanity URL" id="steam-name" type="text" class="validate">
+                    <label for="steam-name">Steam Name</label>
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Find Steam Id
+                      <i class="material-icons right">send</i>
+                    </button>
+                  </div>
+
                 </form>
+
               </div>
             </div>
+
             <div class="card-action" style="padding: 10px; ">
               <button class="btn waves-effect waves-light" type="submit" name="action">Submit
                 <i class="material-icons right">send</i>
               </button>
             </div>
-          </div>
-        </div>
 
-
-        <div class="col s12 m8 offset-m2 l6" style="margin-top: 50px">
-          <div class="carousel carousel-slider z-depth-5">
-            <a class="carousel-item" href="#one!">
-              <img src="https://www.sabreakingnews.co.za/wp-content/uploads/2017/08/Gaming.jpg" style="height: 400px; width: 515px">
-              <h4>Befriend Fellow Gamers</h4>
-            </a>
-            <a class="carousel-item" href="#two!">
-              <img class="responsive-img" src="https://www.hindustantimes.com/rf/image_size_960x540/HT/p2/2018/02/11/Pictures/_f3e41e8e-0ef0-11e8-9ced-6b0f736beaca.jpg"
-                style="height: 400px; width: 515px">
-              <h4>Plan Game Nights With Friends</h4>
-            </a>
-            <a class="carousel-item" href="#three!">
-              <img class="responsive-img" src="http://wallpapercraft.site/uploads/posts/images/132967-overwatch__3272.png" style="height: 400px; width: 515px">
-              <h4>Find Reliable Teammates</h4>
-            </a>
-            <a class="carousel-item" href="#four!">
-              <img class="responsive-img" src="http://oceanofgames.com/wp-content/uploads/2017/12/God-of-War-Game-For-PC-Free-Download-2-1024x576.jpg"
-                style="height: 400px; width: 515px">
-              <h4>Tell Your Story</h4>
-            </a>
-            <a class="carousel-item" href="#five!">
-              <img class="responsive-img" src="https://cdn.ndtv.com/tech/gadgets/skyrim_hd_e3_2016.jpg?output-quality=80" style="height: 400px; width: 515px">
-              <h4>Share Tips and Tricks</h4>
-            </a>
           </div>
         </div>
       </div>
     </div>
+
+
+
+
   </main>
 
 
@@ -121,7 +123,7 @@
 
     <div class="footer-copyright">
       <div class="container">
-        © 2014 Copyright
+        © 2014 Copyright Text
       </div>
     </div>
   </footer>
