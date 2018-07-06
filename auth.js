@@ -8,9 +8,10 @@ var uiConfig = {
     },
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
     firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-  
+    firebase.auth.setPersistence(firebase.auth.Auth.Persistence.SESSION)  
   ],
 };
+
 
 // Initialize the FirebaseUI Widget using Firebase.
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
