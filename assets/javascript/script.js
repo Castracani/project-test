@@ -219,11 +219,11 @@ $(document).ready(function () {
     }
   
   });
-  firebase.auth().onAuthStateChanged(user => {
-    if(user) {
-      window.location = 'profile.html'; //After successful login, user will be redirected to home.html
-    }
-  });
+  // firebase.auth().onAuthStateChanged(user => {
+  //   if(user) {
+  //     window.location = 'profile.html'; //After successful login, user will be redirected to home.html
+  //   }
+  // });
 
   $("#signout-btn").click(function () {
     firebase.auth().signOut();
