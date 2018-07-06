@@ -106,6 +106,17 @@ $(document).ready(function () {
     var user = firebase.auth().currentUser;
     var email, uid;
 
+    curUser.firstName = $("#firstname").val();
+    curUser.lastName = $("#lastname").val();
+    curUser.username = $("#username").val();
+    curUser.email = $("#email").val();
+    curUser.steamName = $("#steam-name").val();
+    curUser.psnName = $("#psn-name").val();
+    curUser.xboxName = $("#gamer-tag").val();
+    curUser.nintendoId = $("#nintendo-id").val();
+    curUser.aboutMe = $("#about-input").val();
+
+
 
     if (!user) {
       event.preventDefault();
@@ -121,7 +132,7 @@ $(document).ready(function () {
       var uid = user.uid;
       var providerData = user.providerData;
       var database = firebase.database();
-      database.ref('users/' + uid).update({
+      database.ref('users/' + uid).set({
         username: curUser.username,
         firstname: curUser.firstName,
         lastName: curUser.lastName,
@@ -149,14 +160,8 @@ $(document).ready(function () {
   });
 
   $("#submit-btn").click(function (user) {
-    curUser.firstName = $("#firstname").val();
-    curUser.lastName = $("#lastname").val();
-    curUser.username = $("#username").val();
-    curUser.email = $("#email").val();
-    curUser.steamName = $("#steam-name").val();
-    curUser.psnName = $("#psn-name").val();
-    curUser.xboxName = $("#gamer-tag").val();
-    console.log(curUser.firstName, curUser.lastName, curUser.steamName);
+    var email = $("#email").val().trim();
+    var password = $("#id_pwd").val().trim();
     if (user != null) {
       firebase.auth().signOut();
     }
@@ -174,18 +179,8 @@ $(document).ready(function () {
         var errorMessage = error.message;
         window.alert("Error: " + errorMessage);
       });
-
-    // var database = firebase.database();
-    //   database.ref('users/' + uid).set({
-    //     username: curUser.username,
-    //     firstname: curUser.firstName,
-    //     lastName: curUser.lastName,
-    //     email: curUser.email,
-    //     steamName: curUser.steamName,
-    //     psnName: curUser.psnName,
-    //     xboxName: curUser.xboxName,
-    //   });
-
+      
+    
   });
 
 
@@ -219,11 +214,11 @@ $(document).ready(function () {
     }
   
   });
-  // firebase.auth().onAuthStateChanged(user => {
-  //   if(user) {
-  //     window.location = 'profile.html'; //After successful login, user will be redirected to home.html
-  //   }
-  // });
+  firebase.auth().onAuthStateChanged(user => {
+    if(user) {
+      window.location = 'profile.html'; //After successful login, user will be redirected to home.html
+    }
+  });
 
   $("#signout-btn").click(function () {
     firebase.auth().signOut();
