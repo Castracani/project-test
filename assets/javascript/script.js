@@ -106,18 +106,6 @@ $(document).ready(function () {
     var user = firebase.auth().currentUser;
     var email, uid;
 
-    curUser.firstName = $("#firstname").val();
-    curUser.lastName = $("#lastname").val();
-    curUser.username = $("#username").val();
-    curUser.email = $("#email").val();
-    curUser.steamName = $("#steam-name").val();
-    curUser.psnName = $("#psn-name").val();
-    curUser.xboxName = $("#gamer-tag").val();
-    curUser.nintendoId = $("#nintendo-id").val();
-    curUser.aboutMe = $("#about-input").val();
-
-
-
     if (!user) {
       event.preventDefault();
     }
