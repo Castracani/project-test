@@ -45,6 +45,21 @@ $(document).ready(function () {
     if (user != null) {
       firebase.auth().signOut();
     }
+    var actionCodeSettings = {
+      // URL you want to redirect back to. The domain (www.example.com) for this
+      // URL must be whitelisted in the Firebase Console.
+      url: 'https://castracani.github.io/Project-1/create-profile.html',
+      // This must be true.
+      handleCodeInApp: true,
+      iOS: {
+        bundleId: 'com.example.ios'
+      },
+      android: {
+        packageName: 'com.example.android',
+        installApp: true,
+        minimumVersion: '12'
+      }
+    };
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
       .then(function () {
         // Existing and future Auth states are now persisted in the current
@@ -52,14 +67,19 @@ $(document).ready(function () {
         // if a user forgets to sign out.
         // ...
         // New sign-in will be persisted with session persistence.
-        return firebase.auth().createUserWithEmailAndPassword(email, password);
+        return firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings);
       })
-      .catch(function (error) {
-        // Handle Errors here.
+      .then(function() {
+        // The link was successfully sent. Inform the user.
+        // Save the email locally so you don't need to ask the user for it again
+        // if they open the link on the same device.
+        window.localStorage.setItem('emailForSignIn', email);
+      })
+      .catch(function(error) {
+        // Some error occurred, you can inspect the code: error.code
         var errorMessage = error.message;
-        window.alert("Error: " + errorMessage);
+          window.alert("Error: " + errorMessage);
       });
-  });
 
   $("#login-btn").click(function (user) {
     var user = firebase.auth().currentUser;
