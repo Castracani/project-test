@@ -50,7 +50,7 @@ $(document).ready(function () {
       // URL must be whitelisted in the Firebase Console.
       url: 'https://castracani.github.io/Project-1/create-profile.html',
       // This must be true.
-      handleCodeInApp: false,
+      handleCodeInApp: true,
       iOS: {
         bundleId: 'com.example.ios'
       },
