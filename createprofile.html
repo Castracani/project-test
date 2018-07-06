@@ -18,7 +18,7 @@
     <!-- Header -->
 
     <nav>
-      <div class="nav-wrapper hf-color">
+      <div class="col s12 nav-wrapper hf-color">
         <a href="#!" class="brand-logo">
           <i class="material-icons icon">videogame_asset</i>Gamer Tagged</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger">
@@ -26,25 +26,50 @@
         </a>
         <form class="right hide-on-med-and-down">
           <div class="input-field">
-            <input id="search" type="search" required>
+            <input placeholder="Find Other Gamers" id="search" type="search" required>
             <label class="label-icon" for="search">
               <i class="material-icons">search</i>
             </label>
             <i class="material-icons">close</i>
           </div>
         </form>
+        <ul class="right hide-on-med-and-down">
+          <li>
+            <a href="profile.html">Profile</a>
+          </li>
+          <li>
+            <a href="library.html">Library</a>
+          </li>
+          <li>
+            <a href="ShareInfo.html">Share</a>
+          </li>
+        </ul>
       </div>
     </nav>
+    <!-- Mobile responsive search bar-->
+    <div class="sidenav" id="mobile-demo">
+      <form id="mobile-demo">
+        <div class="input-field">
+          <input id="search" type="search" required>
+          <label class="label-icon" for="search">
+            <i class="material-icons">search</i>
+          </label>
+          <i class="material-icons">close</i>
+        </div>
+      </form>
+      <ul>
+        <li>
+          <a href="profile.html">Profile</a>
+        </li>
+        <li>
+          <a href="library.html">Library</a>
+        </li>
+        <li>
+          <a href="ShareInfo.html">Share</a>
+        </li>
+      </ul>
 
-    <form class="sidenav" id="mobile-demo">
-      <div class="input-field">
-        <input id="search" type="search" required>
-        <label class="label-icon" for="search">
-          <i class="material-icons">search</i>
-        </label>
-        <i class="material-icons">close</i>
-      </div>
-    </form>
+    </div>
 
 
 
@@ -56,54 +81,66 @@
             <div class="card-content">
               <div class="row ">
 
-                <form class="col s12">
+                <form class="formValidate" id="formValidate" method="get" action="" class="col s12">
                   <span class="card-title">Create User Profile</span>
-
-                  <div class="input-field col s6">
-                    <input id="first_name" type="text" class="validate" required>
-                    <label for="first_name">First Name</label>
-                  </div>
-                  <div class="input-field col s6">
-                    <input id="last_name" type="text" class="validate" required>
-                    <label for="last_name">Last Name</label>
-                  </div>
-
                   <div class="row">
                     <div class="input-field col s6">
-                      <input id="username" type="text" class="validate" required>
-                      <label for="username">Username</label>
+                      <input id="firstname" name="firstname" type="text">
+                      <label for="firstname">First Name</label>
                     </div>
                     <div class="input-field col s6">
-                      <input id="email" type="email" class="validate">
+                      <input id="lastname" name="lastname" type="text">
+                      <label for="lastname">Last Name</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s6">
+                      <input id="usernameInput" name="usernameInput" type="text">
+                      <label for="usernameInput">Username</label>
+                    </div>
+                    <div class="input-field col s6">
+                      <input id="email" name="email" type="email">
                       <label for="email">Email</label>
                     </div>
                   </div>
-
-                  <div class="input-field col s12">
-                    <input id="psn-name" type="text" class="validate">
-                    <label for="psn-name">PSN Name</label>
+                  <div class="row">
+                    <div class="input-field col s6">
+                      <input id="password" name="password" type="password">
+                      <label for="password">Password</label>
+                    </div>
+                    <div class="input-field col s6">
+                      <input id="cpassword" name="cpassword" type="password">
+                      <label for="cpassword">Confirm Password</label>
+                    </div>
                   </div>
-
-                  <div class="input-field col s12">
-                    <input id="gamer-tag" type="text" class="validate">
-                    <label for="gamer-tag">Xbox Gamer Tag</label>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input id="psn-name" type="text">
+                      <label for="psn-name">PSN Name</label>
+                    </div>
                   </div>
-
-                  <div class="input-field col s12">
-                    <input placeholder="Enter Vanity URL" id="steam-name" type="text" class="validate">
-                    <label for="steam-name">Steam Name</label>
-                    <button class="btn waves-effect waves-light" type="submit" name="action">Find Steam Id
-                      <i class="material-icons right">send</i>
-                    </button>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input id="gamer-tag" type="text">
+                      <label for="gamer-tag">Xbox Gamer Tag</label>
+                    </div>
                   </div>
-
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input placeholder="Enter Vanity URL" id="steam-name" type="text" class="validate">
+                      <label for="steam-name">Steam Name</label>
+                      <button class="btn waves-effect waves-light" type="submit" name="action" id="get-steam">Find Steam Id
+                        <i class="material-icons right">send</i>
+                      </button>
+                    </div>
+                  </div>
                 </form>
 
               </div>
             </div>
 
             <div class="card-action" style="padding: 10px; ">
-              <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+              <button class="btn waves-effect waves-light" type="submit" name="action" id="profile-submit">Submit
                 <i class="material-icons right">send</i>
               </button>
             </div>
@@ -113,6 +150,14 @@
       </div>
     </div>
 
+    <div id="modal1" class="modal">
+      <!-- Character length modal -->
+      <div class="modal-content">
+        <h3>Username to short</h3>
+        <p>Username must be 8 characters long</p>
+      </div>
+
+    </div>
 
 
 
@@ -123,14 +168,16 @@
 
     <div class="footer-copyright">
       <div class="container">
-        © 2014 Copyright Text
+        © 2018 Copyright
       </div>
     </div>
   </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
-  <script src="assets/javascript/code.js"></script>
+  <script type="text/javascript" src="assets/javascript/validate.js"></script>
+ 
 </body>
 
 </html>

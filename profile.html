@@ -10,6 +10,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+        <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
         <link rel="stylesheet" href="assets/css/profileStyle.css">
         <title>Gamer Tagged</title>
     </head>
@@ -18,58 +19,37 @@
         <main>
             <!-- NAVBAR -->
             <div class "container">
-           
-    <nav>
-        <div class="nav-wrapper hf-color">
-          <a href="#!" class="brand-logo">
-            <i class="material-icons icon">videogame_asset</i>Gamer Tagged</a>
-          <a href="#" data-target="mobile-demo" class="sidenav-trigger">
-            <i class="material-icons">menu</i>
-          </a>
-          <form class="right hide-on-med-and-down">
-            <div class="input-field">
-              <input id="search" type="search" required>
-              <label class="label-icon" for="search">
-                <i class="material-icons">search</i>
-              </label>
-              <i class="material-icons">close</i>
-            </div>
-          </form>
-        </div>
-      </nav>
-  
-      <form class="sidenav" id="mobile-demo">
-        <div class="input-field">
-          <input id="search" type="search" required>
-          <label class="label-icon" for="search">
-            <i class="material-icons">search</i>
-          </label>
-          <i class="material-icons">close</i>
-        </div>
-      </form>
-  
-  
+
+                <nav>
+                    <div class="nav-wrapper hf-color">
+                        <a href="#!" class="brand-logo">
+                            <i class="material-icons icon">videogame_asset</i>Gamer Tagged</a>
+                        <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+                            <i class="material-icons">menu</i>
+                        </a>
+                        <button class="btn waves-effect waves-light hide-on-med-and-down" type="btn" name="action" id="signout-btn" style="float: right;">Logout
+
+                        </button>
+                    </div>
+                </nav>
+
+                <form class="sidenav" id="mobile-demo">
+                    <div class="input-field">
+                        <input id="search" type="search" required>
+                        <label class="label-icon" for="search">
+                            <i class="material-icons">search</i>
+                        </label>
+                        <i class="material-icons">close</i>
+                    </div>
+                </form>
+
+
             </div>
 
             <!--SIDEBAR-->
             <div class="row">
                 <div class="col s12 m12 l12">
                     <div class="row">
-                        
-                        <div class="col s3 m3 l2 z-depth-5 card-color" id="sideBar">
-                            <div class="card horizontal card-color-light" id="sideBarContent">
-                                <div class="card-stacked">
-                                    <div class="card-content">
-                                       <h3>My game library:</h3>
-                                       <hr>
-                                       <div id="library">
-                                           
-                                       </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
                         <!-- PROFILE AND TABS -->
 
@@ -77,15 +57,14 @@
                         <div class="col m9 l9 profile">
                             <div class="row">
                                 <div class="col l11 push-l1 card-color">
-                                    <h2 class="header card-color">John Smith</h2>
+                                    <h2 class="header card-color" id="nameOfUser">John Smith</h2>
                                     <div class="card horizontal card-color-light">
                                         <div class="card-image" id="profileImage">
                                             <img src="assets/images/profile picture Michael Scott.jpg">
                                         </div>
                                         <div class="card-stacked">
                                             <div class="card-content">
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia,
-                                                    reiciendis?
+                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, reiciendis?
                                                 </p>
                                                 <p>Something else: Lorem ipsum dolor sit amet consectetur adipisicing elit.
                                                     Minima veniam, optio debi
@@ -96,17 +75,27 @@
                                             <div class="card-action">
                                                 <ul>
                                                     <li>
-                                                        <a href="#">This is a link</a>
+                                                        <p>Psn:
+                                                            <p id="playStationUsername">
+
+                                                            </p>
+                                                        </p>
                                                     </li>
                                                     <li>
-                                                        <a href="#">This is a link</a>
+                                                        <p>Xbox:
+                                                            <p id="xboxUsername">
+
+                                                            </p>
+                                                        </p>
                                                     </li>
                                                     <li>
-                                                        <a href="#">This is a link</a>
+                                                        <p>Steam:
+                                                            <p id="steamUsername">
+
+                                                            </p>
+                                                        </p>
                                                     </li>
-                                                    <li>
-                                                        <a href="#">This is a link</a>
-                                                    </li>
+
 
                                                 </ul>
                                             </div>
@@ -124,16 +113,16 @@
                                 <div class="col s12 m9 l11 push-l1">
                                     <ul class="tabs">
                                         <li class="tab col s3">
-                                            <a href="#test1">Test 1</a>
+                                            <a href="#test1">My game library</a>
                                         </li>
                                         <li class="tab col s3">
-                                            <a class="active" href="#test2">Test 2</a>
+                                            <a class="active" href="#test2">Gamer ID</a>
                                         </li>
                                         <li class="tab col s3">
-                                            <a href="#test3">Test 3</a>
+                                            <a href="#test3">Personal Information</a>
                                         </li>
                                         <li class="tab col s3">
-                                            <a href="#test4">Test 4</a>
+                                            <a href="#test4">Something else</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -143,14 +132,16 @@
                                     <div class="col s12 m9 l11 push-l1">
                                         <div class="card blue-grey darken-1">
                                             <div class="card-content white-text">
-                                                <span class="card-title">Stats</span>
-                                                <p>These are some very interesting stats for this player's fortnite profile.
-                                                    Lorem, ipsum dolor sit amet consectetur adipisicing.</p>
+                                                <span class="card-title">My game library</span>
+                                                <p id="library">
+                                                    <a class="waves-effect waves-light blue btn-small" href="profile.html">
+                                                        <i class="material-icons small left">refresh</i>
+                                                    </a>
+
+                                                </p>
                                             </div>
-                                            <div class="card-action">
-                                                <a href="#">Profile</a>
-                                                <a href="#">Something else</a>
-                                            </div>
+                                            <a href="#">Share</a>
+
                                         </div>
                                     </div>
                                 </div>
@@ -160,13 +151,12 @@
                                     <div class="col s12 m9 l11 push-l1">
                                         <div class="card teal lighten-1">
                                             <div class="card-content white-text">
-                                                <span class="card-title">High scores</span>
-                                                <p>These are some interesting facts and scores about my gaming skills. Lorem
-                                                    ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
+                                                <span class="card-title" id="customGamerId">Gamer Id:</span>
+                                                <p>Button over here for sharing gamer ID</p>
                                             </div>
                                             <div class="card-action">
                                                 <a href="#">My game</a>
-                                                <a href="#">My favorite titles</a>
+
                                             </div>
                                         </div>
                                     </div>
@@ -176,13 +166,14 @@
                                     <div class="col s12 m9 l11 push-l1">
                                         <div class="card deep-orange lighten-1">
                                             <div class="card-content white-text">
-                                                <span class="card-title">Game data</span>
-                                                <p>something else, yada yada yada yada, Lorem ipsum dolor Lorem ipsum dolor
-                                                    sit amet consectetur adipisicing elit. Labore exercitationem provident
-                                                    deserunt repellat in accusamus.sit amet consectetur adipisicing elit.
-                                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo, officiis.
-                                                    Sint quod distinctio accusamus assumenda aut, tenetur ab architecto perspiciatis
-                                                    facilis fugiat commodi quidem dolor dolorum eum.</p>
+                                                <span class="card-title">Personal Info</span>
+                                                <p>Date joined:</p>
+                                                <p id="firstName">Full name:</p>
+                                                <p id="lastName">Full name:</p>
+
+                                                <p>Favorite game:</p>
+                                                <p>Email:</p>
+
                                             </div>
                                             <div class="card-action">
                                             </div>
@@ -213,43 +204,43 @@
             </div>
         </main>
         <div class="fixed-action-btn">
-                <a href="#" class="btn-floating red btn-large">
-                    <i class="large material-icons">add</i>
-                </a>
-                <ul>
+            <a href="#" class="btn-floating red btn-large">
+                <i class="large material-icons">add</i>
+            </a>
+            <ul>
+                <li>
+                    <a href="home.html" class="btn-floating green btn-large">
+                        <i class="large material-icons">home</i>
+                    </a>
+                </li>
+                <li>
+                    <a href="profile.html" class="btn-floating blue btn-large">
+                        <i class="large material-icons">face</i>
+                    </a>
+                </li>
+                <li>
+                    <a href="library.html" class="btn-floating orange btn-large">
+                        <i class="large material-icons">library_add</i>
+                    </a>
                     <li>
-                        <a href="home.html" class="btn-floating green btn-large">
-                            <i class="large material-icons">home</i>
+                        <a href="aboutUs.html" class="btn-floating yellow btn-large">
+                            <i class="large material-icons">videogame_asset
+                            </i>
                         </a>
                     </li>
-                    <li>
-                        <a href="profile.html" class="btn-floating blue btn-large">
-                            <i class="large material-icons">face</i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="library.html" class="btn-floating orange btn-large">
-                            <i class="large material-icons">library_add</i>
-                        </a>
-                        <li>
-                            <a href="aboutUs.html" class="btn-floating yellow btn-large">
-                                <i class="large material-icons">videogame_asset
-                                </i>
-                            </a>
-                        </li>
-                    </li>
-                </ul>
+                </li>
+            </ul>
+        </div>
+
+
+        <footer class="page-footer hf-color">
+
+            <div class="footer-copyright">
+                <div class="container">
+                    © 2014 Copyright Text
+                </div>
             </div>
-
-     
-  <footer class="page-footer hf-color">
-
-    <div class="footer-copyright">
-      <div class="container">
-        © 2014 Copyright Text
-      </div>
-    </div>
-  </footer>
+        </footer>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
 
