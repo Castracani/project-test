@@ -11,15 +11,6 @@ $(document).ready(function () {
   };
   firebase.initializeApp(config);
 
-  var database = firebase.database();
-  database.ref('/users/' + uid).on("load", function(snap) {
-    console.log(snap.val().email);
-    console.log(snap.val().firstname);
-    console.log(snap.val().lastName);
-    console.log(snap.val().steamName);
-    
-  })
-
   var curUser = {
     username: "",
     firstName: "",
