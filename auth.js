@@ -40,6 +40,7 @@ $(document).ready(function () {
   $("#submit-btn").click(function (user) {
     var email = $("#email").val().trim();
     var password = $("#password").val().trim();
+    $("#email").val("");
     $("#password").val("");
     if (user != null) {
       firebase.auth().signOut();
@@ -49,7 +50,15 @@ $(document).ready(function () {
       // URL must be whitelisted in the Firebase Console.
       url: 'https://castracani.github.io/Project-1/create-profile.html',
       // This must be true.
-      handleCodeInApp: false,
+      handleCodeInApp: true,
+      iOS: {
+        bundleId: 'com.example.ios'
+      },
+      android: {
+        packageName: 'com.example.android',
+        installApp: true,
+        minimumVersion: '12'
+      }
     };
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
       .then(function () {
@@ -58,20 +67,15 @@ $(document).ready(function () {
         // if a user forgets to sign out.
         // ...
         // New sign-in will be persisted with session persistence.
-        return firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings);
-      })
-      .then(function () {
-        // The link was successfully sent. Inform the user.
-        // Save the email locally so you don't need to ask the user for it again
-        // if they open the link on the same device.
-        window.localStorage.setItem('emailForSignIn', email);
+        return firebase.auth().createUserWithEmailAndPassword(email, password);
       })
       .catch(function (error) {
-        // Some error occurred, you can inspect the code: error.code
+        // Handle Errors here.
         var errorMessage = error.message;
         window.alert("Error: " + errorMessage);
       });
   });
+
   $("#login-btn").click(function (user) {
     var user = firebase.auth().currentUser;
     var email = $("#email").val().trim();
