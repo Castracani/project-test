@@ -69,18 +69,18 @@ $(document).ready(function () {
         // New sign-in will be persisted with session persistence.
         return firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings);
       })
-      .then(function() {
+      .then(function () {
         // The link was successfully sent. Inform the user.
         // Save the email locally so you don't need to ask the user for it again
         // if they open the link on the same device.
         window.localStorage.setItem('emailForSignIn', email);
       })
-      .catch(function(error) {
+      .catch(function (error) {
         // Some error occurred, you can inspect the code: error.code
         var errorMessage = error.message;
-          window.alert("Error: " + errorMessage);
+        window.alert("Error: " + errorMessage);
       });
-
+  });
   $("#login-btn").click(function (user) {
     var user = firebase.auth().currentUser;
     var email = $("#email").val().trim();
