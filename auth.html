@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Login Page</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-signin-client_id" content="1009852254812-h7sfbr4ebnkdk9qqa25rl23vbsphctfh.apps.googleusercontent.com">
+  <meta name="google-signin-cookiepolicy" content="single_host_origin">
+  <meta name="google-signin-scope" content="profile email">
+
   <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
   <script>
     // Initialize Firebase
@@ -19,14 +23,37 @@
     };
     firebase.initializeApp(config);
   </script>
-  <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
-  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
-  <script type="text/javascript" src="auth.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script src="code.js"></script>
 </head>
 
 <body>
-  <div id="firebaseui-auth-container"></div>
+
+  <div id="logged-in" style="display:inline-block;background-color:aqua">Logged In!</div>
+  <span id="welcome-text"></span>
+  <div id="not-logged-in" style="display:inline-block;background-color:blueviolet">Not Logged In!</div>
   <br />
+  <br />
+  <input id="email" type="email" placeholder="email here">
+  <br />
+  <br />
+  <input id="password" type="password" placeholder="password here">
+  <br />
+  <br />
+  <button type="submit" id="submit-btn">Submit Info</button>
+  <br />
+  <br />
+  <button type="submit" id="login-btn">Login Here</button>
+  <br />
+  <br />
+  <button type="submit" id="signout-btn">Sign Out Here</button>
+  <br />
+ 
+
+
+  </script>
+
 </body>
 
 </html>
