@@ -179,7 +179,6 @@ $(document).ready(function () {
         var errorMessage = error.message;
         window.alert("Error: " + errorMessage);
       });
-      
     
   });
 
