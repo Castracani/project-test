@@ -13,6 +13,9 @@ $(document).ready(function () {
 
   var database = firebase.database();
 
+  var email;
+  var uid;
+
   var curUser = {
     username: "",
     firstName: "",
@@ -148,8 +151,16 @@ $(document).ready(function () {
   });
 
   $("#submit-btn").click(function (user) {
-    var email = $("#email").val().trim();
-    var password = $("#id_pwd").val().trim();
+    var database = firebase.database();
+      database.ref('users/' + uid).set({
+        username: curUser.username,
+        firstname: curUser.firstName,
+        lastName: curUser.lastName,
+        email: curUser.email,
+        steamName: curUser.steamName,
+        psnName: curUser.psnName,
+        xboxName: curUser.xboxName,
+      });
     if (user != null) {
       firebase.auth().signOut();
     }
@@ -167,7 +178,6 @@ $(document).ready(function () {
         var errorMessage = error.message;
         window.alert("Error: " + errorMessage);
       });
-    
   });
 
 
