@@ -120,7 +120,7 @@ $(document).ready(function () {
       var uid = user.uid;
       var providerData = user.providerData;
       var database = firebase.database();
-      database.ref('users/' + uid).set({
+      database.ref('users/' + uid).update({
         username: curUser.username,
         firstname: curUser.firstName,
         lastName: curUser.lastName,
