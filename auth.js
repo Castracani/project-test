@@ -40,7 +40,6 @@ $(document).ready(function () {
   $("#submit-btn").click(function (user) {
     var email = $("#email").val().trim();
     var password = $("#password").val().trim();
-    $("#email").val("");
     $("#password").val("");
     if (user != null) {
       firebase.auth().signOut();
