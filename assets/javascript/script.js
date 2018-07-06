@@ -14,7 +14,6 @@ $(document).ready(function () {
   var database = firebase.database();
 
   var email;
-  var uid;
 
   var curUser = {
     username: "",
@@ -123,15 +122,15 @@ $(document).ready(function () {
       var uid = user.uid;
       var providerData = user.providerData;
       var database = firebase.database();
-      database.ref('users/' + uid).update({
-        username: curUser.username,
-        firstname: curUser.firstName,
-        lastName: curUser.lastName,
-        email: curUser.email,
-        steamName: curUser.steamName,
-        psnName: curUser.psnName,
-        xboxName: curUser.xboxName,
-      });
+      // database.ref('users/' + uid).update({
+      //   username: curUser.username,
+      //   firstname: curUser.firstName,
+      //   lastName: curUser.lastName,
+      //   email: curUser.email,
+      //   steamName: curUser.steamName,
+      //   psnName: curUser.psnName,
+      //   xboxName: curUser.xboxName,
+      // });
 
       console.log(email, isAnonymous, uid, providerData);
       localStorage.setItem("username", username);
