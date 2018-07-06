@@ -13,8 +13,6 @@ $(document).ready(function () {
 
   var database = firebase.database();
 
-  var email;
-
   var curUser = {
     username: "",
     firstName: "",
@@ -108,6 +106,18 @@ $(document).ready(function () {
     var user = firebase.auth().currentUser;
     var email, uid;
 
+    curUser.firstName = $("#firstname").val();
+    curUser.lastName = $("#lastname").val();
+    curUser.username = $("#username").val();
+    curUser.email = $("#email").val();
+    curUser.steamName = $("#steam-name").val();
+    curUser.psnName = $("#psn-name").val();
+    curUser.xboxName = $("#gamer-tag").val();
+    curUser.nintendoId = $("#nintendo-id").val();
+    curUser.aboutMe = $("#about-input").val();
+
+
+
     if (!user) {
       event.preventDefault();
     }
@@ -122,15 +132,15 @@ $(document).ready(function () {
       var uid = user.uid;
       var providerData = user.providerData;
       var database = firebase.database();
-      // database.ref('users/' + uid).update({
-      //   username: curUser.username,
-      //   firstname: curUser.firstName,
-      //   lastName: curUser.lastName,
-      //   email: curUser.email,
-      //   steamName: curUser.steamName,
-      //   psnName: curUser.psnName,
-      //   xboxName: curUser.xboxName,
-      // });
+      database.ref('users/' + uid).set({
+        username: curUser.username,
+        firstname: curUser.firstName,
+        lastName: curUser.lastName,
+        email: curUser.email,
+        steamName: curUser.steamName,
+        psnName: curUser.psnName,
+        xboxName: curUser.xboxName,
+      });
 
       console.log(email, isAnonymous, uid, providerData);
       localStorage.setItem("username", username);
@@ -150,16 +160,8 @@ $(document).ready(function () {
   });
 
   $("#submit-btn").click(function (user) {
-    var database = firebase.database();
-      database.ref('users/' + uid).set({
-        username: curUser.username,
-        firstname: curUser.firstName,
-        lastName: curUser.lastName,
-        email: curUser.email,
-        steamName: curUser.steamName,
-        psnName: curUser.psnName,
-        xboxName: curUser.xboxName,
-      });
+    var email = $("#email").val().trim();
+    var password = $("#id_pwd").val().trim();
     if (user != null) {
       firebase.auth().signOut();
     }
@@ -177,6 +179,7 @@ $(document).ready(function () {
         var errorMessage = error.message;
         window.alert("Error: " + errorMessage);
       });
+    
   });
 
 
