@@ -50,15 +50,7 @@ $(document).ready(function () {
       // URL must be whitelisted in the Firebase Console.
       url: 'https://castracani.github.io/Project-1/create-profile.html',
       // This must be true.
-      handleCodeInApp: true,
-      iOS: {
-        bundleId: 'com.example.ios'
-      },
-      android: {
-        packageName: 'com.example.android',
-        installApp: true,
-        minimumVersion: '12'
-      }
+      handleCodeInApp: false,
     };
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
       .then(function () {
