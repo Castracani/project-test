@@ -8,12 +8,12 @@ var uiConfig = {
     },
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
     firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-    firebase.auth.setPersistence(firebase.auth.Auth.Persistence.SESSION)  
   ],
 };
 
 
 // Initialize the FirebaseUI Widget using Firebase.
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
+var session = firebase.auth.setPersistence(firebase.auth.Auth.Persistence.SESSION);
 // The start method will wait until the DOM is loaded.
-ui.start('#firebaseui-auth-container', uiConfig);
+ui.start('#firebaseui-auth-container', uiConfig, session);
