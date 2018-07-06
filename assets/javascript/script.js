@@ -106,15 +106,15 @@ $(document).ready(function () {
     var user = firebase.auth().currentUser;
     var email, uid;
 
-    // curUser.firstName = $("#firstname").val();
-    // curUser.lastName = $("#lastname").val();
-    // curUser.username = $("#username").val();
-    // curUser.email = $("#email").val();
-    // curUser.steamName = $("#steam-name").val();
-    // curUser.psnName = $("#psn-name").val();
-    // curUser.xboxName = $("#gamer-tag").val();
-    // curUser.nintendoId = $("#nintendo-id").val();
-    // curUser.aboutMe = $("#about-input").val();
+    curUser.firstName = $("#firstname").val();
+    curUser.lastName = $("#lastname").val();
+    curUser.username = $("#username").val();
+    curUser.email = $("#email").val();
+    curUser.steamName = $("#steam-name").val();
+    curUser.psnName = $("#psn-name").val();
+    curUser.xboxName = $("#gamer-tag").val();
+    curUser.nintendoId = $("#nintendo-id").val();
+    curUser.aboutMe = $("#about-input").val();
 
 
 
@@ -132,15 +132,15 @@ $(document).ready(function () {
       var uid = user.uid;
       var providerData = user.providerData;
       var database = firebase.database();
-      // database.ref('users/' + uid).set({
-      //   username: curUser.username,
-      //   firstname: curUser.firstName,
-      //   lastName: curUser.lastName,
-      //   email: curUser.email,
-      //   steamName: curUser.steamName,
-      //   psnName: curUser.psnName,
-      //   xboxName: curUser.xboxName,
-      // });
+      database.ref('users/' + uid).set({
+        username: curUser.username,
+        firstname: curUser.firstName,
+        lastName: curUser.lastName,
+        email: curUser.email,
+        steamName: curUser.steamName,
+        psnName: curUser.psnName,
+        xboxName: curUser.xboxName,
+      });
 
       console.log(email, isAnonymous, uid, providerData);
       localStorage.setItem("username", username);
@@ -165,16 +165,6 @@ $(document).ready(function () {
     if (user != null) {
       firebase.auth().signOut();
     }
-    curUser.firstName = $("#firstname").val();
-    curUser.lastName = $("#lastname").val();
-    curUser.username = $("#username").val();
-    curUser.email = $("#email").val();
-    curUser.steamName = $("#steam-name").val();
-    curUser.psnName = $("#psn-name").val();
-    curUser.xboxName = $("#gamer-tag").val();
-    curUser.nintendoId = $("#nintendo-id").val();
-    curUser.aboutMe = $("#about-input").val();
-
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
       .then(function () {
         // Existing and future Auth states are now persisted in the current
@@ -184,38 +174,19 @@ $(document).ready(function () {
         // New sign-in will be persisted with session persistence.
         return firebase.auth().createUserWithEmailAndPassword(email, password);
       })
-      .then(function (curUser) {
-        database.ref('users/' + uid).set({
-          username: curUser.username,
-          firstname: curUser.firstName,
-          lastName: curUser.lastName,
-          email: curUser.email,
-          steamName: curUser.steamName,
-          psnName: curUser.psnName,
-          xboxName: curUser.xboxName,
-        })
-      })
       .catch(function (error) {
         // Handle Errors here.
         var errorMessage = error.message;
         window.alert("Error: " + errorMessage);
       });
-    // database.ref('users/' + uid).set({
-    //   username: curUser.username,
-    //   firstname: curUser.firstName,
-    //   lastName: curUser.lastName,
-    //   email: curUser.email,
-    //   steamName: curUser.steamName,
-    //   psnName: curUser.psnName,
-    //   xboxName: curUser.xboxName,
-    // });
-
+    
   });
 
 
 
   $("#login-btn").click(function (user) {
     var user = firebase.auth().currentUser;
+    $(".modal-content").html("");
     var email = $("#login-email").val().trim();
     var password = $("#login-password").val().trim();
     $("#login-email").val("");
@@ -238,13 +209,13 @@ $(document).ready(function () {
           var errorMessage = error.message;
           window.alert("Error: " + errorMessage);
         });
-
-
+        
+      
     }
-
+  
   });
   firebase.auth().onAuthStateChanged(user => {
-    if (user) {
+    if(user) {
       window.location = 'profile.html'; //After successful login, user will be redirected to home.html
     }
   });
