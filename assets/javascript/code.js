@@ -30,6 +30,12 @@ var curUser = {
   steamLastOnline: ""
 }
 
+firebase.auth().onAuthStateChanged( user => {
+
+  console.log(user.uid);
+
+});
+
 
 
 $(document).ready(function () {
@@ -353,12 +359,6 @@ firebase.database().ref('/users/' + localStorage.getItem("UID")).once('value').t
   console.log(snapshot.val().firstname);
   console.log(snapshot.val().lastName);
  });
-
- firebase.auth().onAuthStateChanged( user => {
-
-  console.log(user.uid);
-
-});
 
 })
 
