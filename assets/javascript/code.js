@@ -12,6 +12,11 @@
   firebase.initializeApp(config);
   var database = firebase.database();
 
+  firebase.database().ref('/users/' + localStorage.getItem("UID")).once('value').then(function (snapshot) {
+    console.log(snapshot.val().firstname);
+    console.log(snapshot.val().lastName);
+   });
+
   // maybe set these values initally to the firebase values?
 var curUser = {
   username: "", 
@@ -351,12 +356,10 @@ $("#signout-btn").click(function () {
 });
 
 
-var userId = firebase.auth().currentUser.uid;
-//Get the user data
-return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
-console.log(snapshot.val().firstname);
-console.log(snapshot.val().lastName);
-});
+firebase.database().ref('/users/' + localStorage.getItem("UID")).once('value').then(function (snapshot) {
+  console.log(snapshot.val().firstname);
+  console.log(snapshot.val().lastName);
+ });
 
 })
 
