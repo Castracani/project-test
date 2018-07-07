@@ -13,7 +13,7 @@
   var database = firebase.database();
 
   firebase.database().ref('/users/' + JSON.stringify(sessionStorage.getItem("uid")).once('value').then(function (snapshot) {
-    console.log(snapshot.val().firstname);
+    console.log(snapshot.val().uid);
     console.log(snapshot.val().lastName);
    });
 
