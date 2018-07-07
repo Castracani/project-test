@@ -12,7 +12,6 @@
   firebase.initializeApp(config);
   var database = firebase.database();
 
-
   // maybe set these values initally to the firebase values?
 var curUser = {
   username: "", 
@@ -27,35 +26,20 @@ var curUser = {
   aboutMe: "",
   status: "",
   steamOnline: "",
-  steamLastOnline: ""
+  steamLastOnline: "",
+  gameLibrary: []
 }
-
-firebase.auth().onAuthStateChanged( user => {
-
-  console.log(user.uid);
-
-});
 
 
 
 $(document).ready(function () {
-  
-  if (user != null) {
-    name = user.displayName;
-    email = user.email;
-    photoUrl = user.photoURL;
-    emailVerified = user.emailVerified;
-    uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
-                     // this value to authenticate with your backend server, if
-                     // you have one. Use User.getToken() instead.
-  }
 
 
   
 
   // giantbomb API start (for game library) =================================================================>>>
   
-  var gameLibrary = [];
+  var newLibrary = [];
   var searchResults = [];
 
   function addGames(game) {
@@ -75,7 +59,7 @@ $(document).ready(function () {
       searchResults = [];
       for (i = 0; i < 10; i++) {
         //  game icon
-        var gameImg = results[i].image.icon_url;
+        var gameImg = results[i].image.small_url;
         var image = $("<img src='" + gameImg + "' />")
         //  game name
         var gameName = $("<h3>").text(results[i].name)
@@ -101,8 +85,7 @@ $(document).ready(function () {
         //  create a horizontal line
         var hr = $("<hr>")
         //  push game to search array
-        searchResults.push(results[i].name);
-
+        searchResults.push(results[i].image.small_url);
         $("#search-results").append(gameName, image, gameInfo, gameRelease, newButton, hr)
       }
 
@@ -131,14 +114,9 @@ $(document).ready(function () {
     var x = $(this).val(); //grabs value that will match location within array and assigns to a new variable
 
     var newGame = searchResults[x]; //grabs game title from searchResults array
-    gameLibrary.push(newGame); //adds to libray variable
-    console.log(gameLibrary)
-  
-    
-    // store within firebase !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    database.ref("users/" + curUser.username).update({
-      gamelibrary: gameLibrary
-    })
+    newLibrary.push(newGame); //adds to libray variable
+    console.log(newLibrary)
+
   })
 
   $(document).on("click", "#library-refresh", function(){
@@ -175,13 +153,10 @@ $(document).ready(function () {
     curUser.aboutMe = $("#about-input").val();
 
     // set local storage
-    localStorage.setItem("firstname", curUser.firstName);
-    localStorage.setItem("lastname", curUser.lastName);
-    localStorage.setItem("username", curUser.username);
 
 
     // store data into firebase  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    database.ref("users/" + curUser.username).update({
+    database.ref("users/" + firebase.auth().currentUser.uid).update({
       
         username: curUser.username,
         firstname: curUser.firstName,
@@ -196,102 +171,152 @@ $(document).ready(function () {
   })
   // Profile creation end <<<=================================================================
 
-
-
-
-  // steam API start ===============================================================================================>>>>
-
-
-  // find steam id from create profile page
-  $(document).on("click", "#get-steam", function () {
-    event.preventDefault();
-    var vanityName = $("#steam-name").val().trim();
-    getSteamName(vanityName)
-  })
-  function getSteamName(name) {
-    // Fetches steam user ID number
-    var queryURL = "https://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=597FC535B0A81C139B5227A808EAA15B&vanityurl=" + name
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    }).then(function (data) {
-
-      var steamNumber = data.response.steamid;
-
-      returnSteamName(steamNumber);
-
-    })
-  }
-  function returnSteamName(id) {
-    var queryURL = "https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=597FC535B0A81C139B5227A808EAA15B&steamids=" + id;
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    }).then(function (data) {
-      var steamName = data.response.players[0].personaname;
-      console.log(steamName)
-      $("#steam-name").val(steamName);
-      curUser.avatar = data.response.players[0].avatarmedium;
-     
-      //  $("#image-share").html(image);
-      var lastLogOff = data.response.players[0].lastlogoff;
-      var newDate = $.parseJSON(lastLogOff);
-      var formatDate = new Date(1000 * newDate);
-      curUser.steamLastOnline = formatDate
-      // store in firebase  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-      // check if online 
-      var online = data.response.players[0].personastate;
-      if (online === 0) {
-        curUser.steamOnline = "no"
-      } else if (online === 1) {
-        curUser.steamOnline = "yes"
-      }
-      // store in firebase  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    })
-  }
-
-// steam API end <<<================================================================================
-
-
-
   
 
-// populate profile page start ==================================================================>>>>
+// change status
+$("#buttonEditStatus").on("click", function(){
+  var newSatus;
+  database.ref("users/" + firebase.auth().currentUser.uid).update({
+    status: newStatus
+  })
+})
 
-// need to add onload="populatePage();" to <body> of page <---------------------!!!!!!
 
+
+
+
+// gamer id card ends  <<<==================================================================
+
+// start page floating button
+$('.fixed-action-btn').floatingActionButton();
+
+// tabs
+$('.tabs').tabs();
+
+$('.carousel.carousel-slider').carousel({
+  fullWidth: true,
+  indicators: true,
+  next: 3
+});
+
+$('.sidenav').sidenav();
+
+$('.tabs').tabs();
+
+setInterval(function () {
+  $('.carousel').carousel('next');
+}, 5000);
+
+
+$("#signout-btn").click(function () {
+  firebase.auth().signOut();
+  localStorage.clear();
+  window.location = "startpage.html";
+
+});
+
+
+})
 
 function populatePage(){
+  draw();
+  firebase.auth().onAuthStateChanged( user => {
 
-// This will all be populated with firebase!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    firebase.database().ref('/users/' + firebase.auth().currentUser.uid).once('value').then(function(snapshot) {
+   
+      
 
-// username
+       // // username
+    $("#nameOfUser").html("<h1>" + snapshot.val().username + "</h1>");
+    // real name
+    if (snapshot.val().firstname !== undefined && snapshot.val().lastname !== undefined) {
+    $("#real-name").html("<h3>(" + snapshot.val().firstname + " " + snapshot.val().lastname + ")</h3>");
+    } else if (snapshot.val().firstname !== undefined && snapshot.val().lastname == undefined){
+      $("#real-name").html("<h3>(" + snapshot.val().firstname + ")</h3>");
+    }
+    // // status
+    if(snapshot.val().status !== undefined){
+    $("#status").html("<p>" + snapshot.val().status + "</p>");
+    } else {
+      $("#status").html("<p>Update your status here</p>");
+    }
+    // // avatar
+    $("#profileImage").html("<img src='" + snapshot.val().avatar + "' />");
+    // // psn
+    $("#playStationUsername").html(snapshot.val().psnName);
+    // // xbox
+    $("#xboxUsername").html(snapshot.val().xboxName);
+    // // steam
+    $("#steamUsername").html(snapshot.val().steamName);
+    // // game library
+    var library = snapshot.val().gameLibrary
+    // for(i=0; i<library.length; i++){
+    //   var newImage = $("<img src='" + library[i] + "' />");
+    //   $("#library").append(newImage);
+    // }
 
-// $("#nameOfUser").html("<h1>" + firebase variable will go here + "</h1>") 
+    // contact stuff
+    if(snapshot.val().firstname !== undefined){
+    $("#firstName").html(snapshot.val().firstname);
+    } else {
+      $("#firstName").html("not listed"); 
+    }if(snapshot.val().lastname !== undefined){
+      $("#lastName").html(snapshot.val().lastname);
+      } else {
+        $("#lastName").html("not listed");
+      } 
+      
+    
+    
+    $("#emailOfUser").html(snapshot.val().email);
+    });
+   
+   });
 
 
-// screen names
 
 
-// status
 
-// game library
+   
 
-// Gamer ID card
-
-// contact
-
-// 
 }
-// populate profile page end  <<<<==================================================================
-
 
 
 // gamer id card start ==================================================================>>>>
 
 // need to add onload="draw();" to body of page <---------------------!!!!!!
 function draw() {
+  var newImg;
+  firebase.auth().onAuthStateChanged( user => {
+
+    firebase.database().ref('/users/' + firebase.auth().currentUser.uid).once('value').then(function(snapshot) {
+   
+      newImg = $("<img src='" + snapshot.val().avatar + "' />");
+      newImg.attr("id", "image-source");
+      $("#image-share").html(newImg);
+      console.log(snapshot.val().avatar);
+      
+      var ctx = canvas.getContext('2d');
+      ctx.drawImage(document.getElementById('image-source'), 8, 60, 180, 180)
+      // if(snapshot.val().avatar !== undefined){
+      // newImg = $("<img src='" + snapshot.val().avatar + "' />");
+      // console.log(snapshot.val().avatar);
+      // newImg.attr("id", "image-source");
+      // var ctx = canvas.getContext('2d');
+      // ctx.drawImage(document.getElementById('image-source'), 8, 60, 180, 180)
+      // $("#image-share").html(newImg);
+      // } else {
+      //   newImg = $("<img src='assets/images/empty-photo.jpg' style='height: 150px; width: auto'/>");
+      //   newImg.attr("id", "image-source");
+      // $("#image-share").html(newImg);
+      // var ctx = canvas.getContext('2d');
+      // ctx.drawImage(document.getElementById('image-source'), 8, 60, 180, 180)
+      // }
+    });
+   
+   });
+  
+ 
   // text
   var par = document.getElementById('canvas').getContext('2d');
   par.font = '30px serif';
@@ -316,115 +341,12 @@ function draw() {
   }
 
   // avatar image
-  var ctx = canvas.getContext('2d');
-  ctx.drawImage(document.getElementById('image-source'), 8, 60, 180, 180)
+ 
 }
 
-// gamer id card ends  <<<==================================================================
-
-// start page floating button
-$('.fixed-action-btn').floatingActionButton();
-
-// tabs
-$('.tabs').tabs();
-
-
-
-$('.fixed-action-btn').floatingActionButton();
-  
-
-$('.carousel.carousel-slider').carousel({
-  fullWidth: true,
-  indicators: true,
-  next: 3
-});
-
-$('.sidenav').sidenav();
-$('.tabs').tabs({ swipeable: true });
-
-setInterval(function () {
-  $('.carousel').carousel('next');
-}, 5000);
-
-
-$("#signout-btn").click(function () {
-  firebase.auth().signOut();
-  localStorage.clear();
-  window.location = "startpage.html";
-
-});
-
-
-firebase.database().ref('/users/' + localStorage.getItem("UID")).once('value').then(function (snapshot) {
-  console.log(snapshot.val().firstname);
-  console.log(snapshot.val().lastName);
- });
-
-})
 
 var curUser = firebase.auth().currentUser.uid;
 var usersRef = firebase.database().ref('users/' + curUser);
 var games = usersRef.child('gamesLib');
 var path = games.toString();
 console.log(path);
-
-
-
-
-
-
-
-
-// // Steam api =========================================================================================================================
-  
-// function getSteamId(steamId) {
-//   // Fetch steam user ID number
-//   var queryURL = "https://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=597FC535B0A81C139B5227A808EAA15B&vanityurl=" + steamId
-//   $.ajax({
-//     url: queryURL,
-//     method: "GET"
-//   }).then(function (data) {
-
-//     var steamNumber = data.response.steamid;
-
-//     getSteamProfile(steamNumber);
-
-//   })
-// }
-// //  get steam ID from vanity URL search
-// $("#steam-submit").on("click", function () {
-//   event.preventDefault();
-//   var steamId = $("#steam-input").val().trim();
-
-//   getSteamId(steamId);
-// })
-
-
-// // Fetch steam user profile page
-
-// // nick's steam ID for testing purposes: 76561197972752173
-
-// function getSteamProfile(number) {
-//   var queryURL = "https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=597FC535B0A81C139B5227A808EAA15B&steamids=" + number;
-//   $.ajax({
-//     url: queryURL,
-//     method: "GET"
-//   }).then(function (data) {
-//     // save avatar
-//     curUser.avatar = data.response.players[0].avatarmedium;
-//     // last online
-//     var lastLogOff = data.response.players[0].lastlogoff;
-//     var newDate = $.parseJSON(lastLogOff);
-//     var formatDate = new Date(1000 * newDate);
-//     curUser.steamLastOnline = formatDate
-//     // check if online 
-//     var online = data.response.players[0].personastate;
-//     if (online === 0) {
-//       curUser.steamOnline = "no"
-//     } else if (online === 1) {
-//       curUser.steamOnline = "yes"
-//     }
-    
-//   })
-// }
-// // ==================================================================================================================================

@@ -15,21 +15,23 @@
         <title>Gamer Tagged</title>
     </head>
 
-    <body>
+    <body onload="populatePage()">
         <main>
             <!-- NAVBAR -->
             <div class "container">
 
                 <nav>
                     <div class="nav-wrapper hf-color">
-                        <a href="#!" class="brand-logo">
+                        <a href="home.html" class="brand-logo">
                             <i class="material-icons icon">videogame_asset</i>Gamer Tagged</a>
                         <a href="#" data-target="mobile-demo" class="sidenav-trigger">
                             <i class="material-icons">menu</i>
                         </a>
-                        <button class="btn waves-effect waves-light hide-on-med-and-down" type="btn" name="action" id="signout-btn" style="float: right;">Logout
-
-                        </button>
+                        <ul class="right hide-on-med-and-down">
+                            <li>
+                                <a class="waves-effect waves-light btn" id="signout-btn">Log Out</a>
+                            </li>
+                        </ul>
                     </div>
                 </nav>
 
@@ -57,13 +59,16 @@
                         <div class="col m9 l9 profile">
                             <div class="row">
                                 <div class="col l11 push-l1 card-color">
-                                    <h2 class="header card-color" id="nameOfUser">John Smith</h2>
+                                    <h2 class="header card-color"><span id="nameOfUser">John Smith</span></h2><span id="real-name"></span>
+                                    
                                     <div class="card horizontal card-color-light">
                                         <div class="card-image" id="profileImage">
-                                            <img src="assets/images/profile picture Michael Scott.jpg">
+\                                            <img src="assets/images/profile picture Michael Scott.jpg">
+<a class="btn-floating btn-small waves-effect waves-light purple"id="buttonEditPicture"><i class="material-icons">create</i></a>
+
                                         </div>
                                         <div class="card-stacked">
-                                            <div class="card-content">
+                                            <div class="card-content" id="status">
                                                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, reiciendis?
                                                 </p>
                                                 <p>Something else: Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -72,25 +77,27 @@
                                                 <p>Last line: Lorem ipsum dolor sit amet. Lorem</p>
 
                                             </div>
+                                            <a class="btn-floating btn-small waves-effect waves-light purple"id="buttonEditStatus"><i class="material-icons">create</i></a>
+
                                             <div class="card-action">
                                                 <ul>
                                                     <li>
                                                         <p>Psn:
-                                                            <p id="playStationUsername">
+                                                            <span id="playStationUsername">
 
                                                             </p>
                                                         </p>
                                                     </li>
                                                     <li>
                                                         <p>Xbox:
-                                                            <p id="xboxUsername">
+                                                            <span id="xboxUsername">
 
                                                             </p>
                                                         </p>
                                                     </li>
                                                     <li>
                                                         <p>Steam:
-                                                            <p id="steamUsername">
+                                                            <span id="steamUsername">
 
                                                             </p>
                                                         </p>
@@ -98,7 +105,10 @@
 
 
                                                 </ul>
+
                                             </div>
+                                            <a class="btn-floating btn-small waves-effect waves-light purple"id="buttonEditPicture"><i class="material-icons">create</i></a>
+
                                         </div>
                                     </div>
                                 </div>
@@ -119,7 +129,7 @@
                                             <a class="active" href="#test2">Gamer ID</a>
                                         </li>
                                         <li class="tab col s3">
-                                            <a href="#test3">Personal Information</a>
+                                            <a href="#test3">Contact</a>
                                         </li>
                                         <li class="tab col s3">
                                             <a href="#test4">Something else</a>
@@ -152,6 +162,10 @@
                                         <div class="card teal lighten-1">
                                             <div class="card-content white-text">
                                                 <span class="card-title" id="customGamerId">Gamer Id:</span>
+                                                <canvas width=auto height=auto id="canvas"></canvas>
+                                                <div style="display:none;" id="image-share">
+                                                    <!-- <img id="image-source" src="assets/images/empty-photo.jpg" style="height: 150px; width: auto"> -->
+                                                </div>
                                                 <p>Button over here for sharing gamer ID</p>
                                             </div>
                                             <div class="card-action">
@@ -166,13 +180,10 @@
                                     <div class="col s12 m9 l11 push-l1">
                                         <div class="card deep-orange lighten-1">
                                             <div class="card-content white-text">
-                                                <span class="card-title">Personal Info</span>
-                                                <p>Date joined:</p>
-                                                <p id="firstName">Full name:</p>
-                                                <p id="lastName">Full name:</p>
-
-                                                <p>Favorite game:</p>
-                                                <p>Email:</p>
+                                                <span class="card-title">Contact</span>
+                                                <p>First name: <span id="firstName"></span></p>
+                                                <p>last name: <span id="lastName"></span></p>
+                                                <p>Email: <span id="emailOfUser"></span></p>
 
                                             </div>
                                             <div class="card-action">
@@ -190,21 +201,20 @@
                                                     ipsum dolor sit amet consectetur adipisicing elit. Laborum, omnis.
                                                 </p>
                                             </div>
-                                            <div class="card-action">
-                                                <a href="#">This is a link</a>
-                                            </div>
+                                           
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        
                         <!-- </div> -->
                     </div>
                 </div>
             </div>
         </main>
         <div class="fixed-action-btn">
-            <a href="#" class="btn-floating red btn-large">
+            <a href="#" class="btn-floating floating-button-red btn-large">
                 <i class="large material-icons">add</i>
             </a>
             <ul>

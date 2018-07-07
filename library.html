@@ -19,34 +19,26 @@
 
     <nav>
       <div class="col s12 nav-wrapper hf-color">
-        <a href="#!" class="brand-logo">
+        <a href="home.html" class="brand-logo">
           <i class="material-icons icon">videogame_asset</i>Gamer Tagged</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger">
           <i class="material-icons">menu</i>
         </a>
-        <form class="right hide-on-med-and-down">
-          <div class="input-field">
-            <input placeholder="Find Other Gamers" id="search" type="search" required>
-            <label class="label-icon" for="search">
-              <i class="material-icons">search</i>
-            </label>
-            <i class="material-icons">close</i>
-          </div>
-        </form>
+        <ul class="right hide-on-med-and-down">
+          <li>
+            <a class="waves-effect waves-light btn" id="signout-btn">Log Out</a>
+          </li>
+        </ul>
       </div>
     </nav>
     <!-- Mobile responsive search bar-->
-    <!-- <div class="sidenav" id="mobile-demo">
-      <form id="mobile-demo">
-        <div class="input-field">
-          <input id="search" type="search" required>
-          <label class="label-icon" for="search">
-            <i class="material-icons">search</i>
-          </label>
-          <i class="material-icons">close</i>
-        </div>
-      </form>
-    </div> -->
+    <div class="sidenav" id="mobile-demo">
+      <ul>
+        <li>
+          <a class="waves-effect waves-light btn" id="signout-btn">Log Out</a>
+        </li>
+      </ul>
+    </div>
 
 
     <div class="container" style="margin-top: 2%;">
@@ -82,17 +74,51 @@
       </div>
     </div>
 
-
   </main>
+
+  <!-- Floating Action Button -->
+  <div class="fixed-action-btn">
+    <a href="#" class="btn-floating float-button-color btn-large">
+      <i class="large material-icons">add</i>
+    </a>
+    <ul>
+      <!-- Link to Home page -->
+      <li>
+        <a href="home.html" class="btn-floating green btn-large">
+          <i class="large material-icons">home</i>
+        </a>
+      </li>
+      <!-- Link to Profile page -->
+      <li>
+        <a href="profile.html" class="btn-floating blue btn-large">
+          <i class="large material-icons">face</i>
+        </a>
+      </li>
+      <!-- Link to Library page -->
+      <li>
+        <a href="library.html" class="btn-floating orange btn-large">
+          <i class="large material-icons">library_add</i>
+        </a>
+        <!-- Link to AboutUs page -->
+        <li>
+          <a href="aboutUs.html" class="btn-floating yellow btn-large">
+            <i class="large material-icons">videogame_asset
+            </i>
+          </a>
+        </li>
+      </li>
+    </ul>
+  </div>
 
 
   <footer class="page-footer hf-color">
 
     <div class="footer-copyright">
       <div class="container">
-        © 2014 Copyright Text
+        &copy; Copyright
       </div>
     </div>
+
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

@@ -20,7 +20,7 @@ main {
 }
 
 .main-content {
-  
+  margin-top: 38px;
   margin-bottom: 40px;
 }
     
@@ -49,6 +49,8 @@ img {
   position: relative;
   text-align: center;
   color: white;
+  height: 400px !important; 
+  width: 515px !important;
 }
 
 h4 {
@@ -62,9 +64,26 @@ h4 {
   opacity: 0.8;
 }
 
-.float-button-color {
+/* .float-button-color {
   background-color:#594170;
+} */
+
+.loginBtn-style {
+  padding: 10px;
 }
+
+.createBtn-style {
+  float: right;
+}
+
+.carousel-style {
+  margin-top: 40px;
+}
+
+.login-style {
+  margin-top: 48px;
+}
+
 
 @media (max-width: 500px) {
   .brand-logo{

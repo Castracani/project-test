@@ -19,35 +19,36 @@
     <!-- Header -->
     <nav>
       <div class="col s12 nav-wrapper hf-color">
-        <a href="#!" class="brand-logo">
+        <a href="home.html" class="brand-logo">
           <i class="material-icons icon">videogame_asset</i>Gamer Tagged</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger">
           <i class="material-icons">menu</i>
         </a>
         <!-- Search bar in nav -->
-        <button class="btn waves-effect waves-light hide-on-med-and-down" type="btn" name="action" id="signout-btn" style="float: right;">Logout
 
-        </button>
+        <ul class="right hide-on-med-and-down">
+          <li>
+            <a class="waves-effect waves-light btn" id="signout-btn">Log Out</a>
+          </li>
+        </ul>
 
       </div>
     </nav>
     <!-- Mobile responsive search bar-->
-    <!-- <form class="sidenav" id="mobile-demo">
-      <div class="input-field">
-        <input id="search" type="search" required>
-        <label class="label-icon" for="search">
-          <i class="material-icons">search</i>
-        </label>
-        <i class="material-icons">close</i>
-      </div>
-    </form> -->
+    <div class="sidenav" id="mobile-demo">
+        <ul>
+          <li>
+            <a class="waves-effect waves-light btn" id="signout-btn">Log Out</a>
+          </li>
+        </ul>
+    </div>
 
 
     <div class="container">
-      <div class="row main-content" style="margin-top: 38px">
+      <div class="row main-content">
         <div class="col s12 m12 l6">
           <!-- Profile login/Create profile card -->
-          <div class="card card-color z-depth-5">
+          <div class="card card-color z-depth-5 login-style">
             <div class="card-content">
               <div class="row ">
                 <form class="col s12">
@@ -69,11 +70,11 @@
                 </form>
               </div>
             </div>
-            <div class="card-action" style="padding: 10px; ">
+            <div class="card-action loginBtn-style">
               <button class="btn waves-effect waves-light" type="submit" name="action" id="login-btn">Submit
                 <i class="material-icons right">send</i>
               </button>
-              <button class="btn waves-effect waves-light" type="submit" name="action" id="profile-modal" style="float: right;">Create Profile
+              <button class="btn waves-effect waves-light createBtn-style" type="submit" name="action" id="profile-modal">Create Profile
                 <i class="material-icons right">send</i>
               </button>
             </div>
@@ -82,27 +83,27 @@
         </div>
 
 
-        <div class="col s12 m8 offset-m2 l6" style="margin-top: 40px">
+        <div class="col s12 m8 offset-m2 l6 carousel-style" >
           <!-- Carousel of images -->
           <div class="carousel carousel-slider z-depth-5">
             <a class="carousel-item" href="#one!">
-              <img src="assets/images/gameretroimg.jpg" style="height: 400px; width: 515px">
+              <img src="assets/images/gameretroimg.jpg">
               <h4>Befriend Fellow Gamers</h4>
             </a>
             <a class="carousel-item" href="#two!">
-              <img class="responsive-img" src="assets/images/threegamers.jpg" style="height: 400px; width: 515px">
+              <img class="responsive-img" src="assets/images/threegamers.jpg">
               <h4>Plan Game Nights With Friends</h4>
             </a>
             <a class="carousel-item" href="#three!">
-              <img class="responsive-img" src="assets/images/overwatch.png" style="height: 400px; width: 515px">
+              <img class="responsive-img" src="assets/images/overwatch.png">
               <h4>Find Reliable Teammates</h4>
             </a>
             <a class="carousel-item" href="#four!">
-              <img class="responsive-img" src="assets/images/gow.jpg" style="height: 400px; width: 515px">
+              <img class="responsive-img" src="assets/images/gow.jpg">
               <h4>Tell Your Story</h4>
             </a>
             <a class="carousel-item" href="#five!">
-              <img class="responsive-img" src="assets/images/skyrim.jpg" style="height: 400px; width: 515px">
+              <img class="responsive-img" src="assets/images/skyrim.jpg">
               <h4>Share Tips and Tricks</h4>
             </a>
           </div>
@@ -180,30 +181,30 @@
 
   <!-- Floating Action Button -->
   <div class="fixed-action-btn">
-    <a href="#" class="btn-floating float-button-color btn-large">
+    <a href="#" class="btn-floating  btn-large">
       <i class="large material-icons">add</i>
     </a>
     <ul>
       <!-- Link to Home page -->
       <li>
-        <a href="home.html" class="btn-floating green btn-large">
+        <a href="home.html" class="btn-floating deep-purple btn-large">
           <i class="large material-icons">home</i>
         </a>
       </li>
       <!-- Link to Profile page -->
       <li>
-        <a href="profile.html" class="btn-floating blue btn-large">
+        <a href="profile.html" class="btn-floating indigo accent-3 btn-large">
           <i class="large material-icons">face</i>
         </a>
       </li>
       <!-- Link to Library page -->
       <li>
-        <a href="library.html" class="btn-floating orange btn-large">
+        <a href="library.html" class="btn-floating cyan darken-4 btn-large">
           <i class="large material-icons">library_add</i>
         </a>
         <!-- Link to AboutUs page -->
         <li>
-          <a href="aboutUs.html" class="btn-floating yellow btn-large">
+          <a href="aboutUs.html" class="btn-floating teal darken-1 btn-large">
             <i class="large material-icons">videogame_asset
             </i>
           </a>
@@ -217,11 +218,12 @@
 
     <div class="footer-copyright">
       <div class="container">
-        &copy; 2014 Copyright
+        &copy; Copyright
       </div>
     </div>
 
   </footer>
+
   <!-- Jquery Plugin -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <!-- Jquery Validate Plugin -->
