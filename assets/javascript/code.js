@@ -12,7 +12,7 @@
   firebase.initializeApp(config);
   var database = firebase.database();
 
-  firebase.database().ref('/users/' + localStorage.getItem("UID")).once('value').then(function (snapshot) {
+  firebase.database().ref('/users/' + sessionStorage.getItem("uid")).once('value').then(function (snapshot) {
     console.log(snapshot.val().firstname);
     console.log(snapshot.val().lastName);
    });
