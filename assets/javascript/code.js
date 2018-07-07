@@ -362,6 +362,12 @@ firebase.database().ref('/users/' + localStorage.getItem("UID")).once('value').t
 
 })
 
+var curUser = firebase.auth().currentUser.uid;
+var usersRef = firebase.database().ref('users/' + curUser);
+var games = usersRef.child('gamesLib');
+var path = games.toString();
+console.log(path);
+
 
 
 
