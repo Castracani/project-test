@@ -345,8 +345,8 @@ function draw() {
 }
 
 
-var curUser = firebase.auth().currentUser;
-var usersRef = firebase.database().ref('users/' + curUser);
+var currentUser = firebase.auth().currentUser;
+var usersRef = firebase.database().ref('users/' + currentUser);
 var games = usersRef.child('gamesLib');
 var path = games.toString();
 console.log(path);
